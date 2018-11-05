@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelSelectDate = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.labelNameOrPathProgram = new System.Windows.Forms.Label();
@@ -36,16 +36,17 @@
             this.buttonOverview = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.labelSelectTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // labelSelectDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Выбрать дату и время";
+            this.labelSelectDate.AutoSize = true;
+            this.labelSelectDate.Location = new System.Drawing.Point(12, 77);
+            this.labelSelectDate.Name = "labelSelectDate";
+            this.labelSelectDate.Size = new System.Drawing.Size(79, 13);
+            this.labelSelectDate.TabIndex = 0;
+            this.labelSelectDate.Text = "Выбрать дату";
             // 
             // dateTimePicker1
             // 
@@ -97,6 +98,7 @@
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonCancel
             // 
@@ -106,12 +108,23 @@
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // labelSelectTime
+            // 
+            this.labelSelectTime.AutoSize = true;
+            this.labelSelectTime.Location = new System.Drawing.Point(210, 77);
+            this.labelSelectTime.Name = "labelSelectTime";
+            this.labelSelectTime.Size = new System.Drawing.Size(84, 13);
+            this.labelSelectTime.TabIndex = 8;
+            this.labelSelectTime.Text = "Выбрать время";
             // 
             // AppManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 207);
+            this.Controls.Add(this.labelSelectTime);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonOverview);
@@ -119,7 +132,7 @@
             this.Controls.Add(this.labelNameOrPathProgram);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelSelectDate);
             this.Name = "AppManageForm";
             this.Text = "AppManageForm";
             this.ResumeLayout(false);
@@ -129,7 +142,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelSelectDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label labelNameOrPathProgram;
@@ -137,5 +150,6 @@
         private System.Windows.Forms.Button buttonOverview;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Label labelSelectTime;
     }
 }

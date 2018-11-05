@@ -75,13 +75,13 @@ namespace TaskManager
         private void startProcToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AppManageForm appManageForm = new AppManageForm(true);
-            appManageForm.Show();
+            appManageForm.ShowDialog();
         }
 
         private void endProcToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AppManageForm appManageForm = new AppManageForm(false);
-            appManageForm.Show();
+            appManageForm.ShowDialog();
         }
     }
 }
