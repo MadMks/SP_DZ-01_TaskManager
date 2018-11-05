@@ -115,12 +115,14 @@
             this.startProcToolStripMenuItem.Name = "startProcToolStripMenuItem";
             this.startProcToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
             this.startProcToolStripMenuItem.Text = "Запуск программы по расписанию";
+            this.startProcToolStripMenuItem.Click += new System.EventHandler(this.startProcToolStripMenuItem_Click);
             // 
             // endProcToolStripMenuItem
             // 
             this.endProcToolStripMenuItem.Name = "endProcToolStripMenuItem";
             this.endProcToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
             this.endProcToolStripMenuItem.Text = "Завершение программы по расписанию";
+            this.endProcToolStripMenuItem.Click += new System.EventHandler(this.endProcToolStripMenuItem_Click);
             // 
             // MainForm
             // 

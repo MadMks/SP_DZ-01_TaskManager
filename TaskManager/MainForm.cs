@@ -71,5 +71,15 @@ namespace TaskManager
         {
             this.ShowActiveProcesses();
         }
+
+        private void startProcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO запуск окна настройки расписания - для старта приложения
+        }
+
+        private void endProcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO запуск окна настройки расписания - для завершения приложения
+        }
     }
 }
