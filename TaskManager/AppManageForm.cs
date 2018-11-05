@@ -16,5 +16,21 @@ namespace TaskManager
         {
             InitializeComponent();
         }
+
+        public AppManageForm(bool isStart)
+        {
+            InitializeComponent();
+        }
+
+        private void buttonOverview_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Выберите файл программы";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.textBoxNameOrPathProgram.Text = openFileDialog.FileName;
+            }
+        }
     }
 }

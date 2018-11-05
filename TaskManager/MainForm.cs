@@ -74,12 +74,14 @@ namespace TaskManager
 
         private void startProcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO запуск окна настройки расписания - для старта приложения
+            AppManageForm appManageForm = new AppManageForm(true);
+            appManageForm.Show();
         }
 
         private void endProcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO запуск окна настройки расписания - для завершения приложения
+            AppManageForm appManageForm = new AppManageForm(false);
+            appManageForm.Show();
         }
     }
 }
