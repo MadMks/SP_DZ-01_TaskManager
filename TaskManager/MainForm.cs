@@ -140,27 +140,22 @@ namespace TaskManager
             //    closeProcessName = this.textBoxNameOrPathProgram.Text;
             //}
 
-            
+            string processName = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
 
-            Process[] processes = Process.GetProcesses();
+            Process[] processes = Process.GetProcessesByName(processName);
 
             foreach (Process process in processes)
             {
                 //ProcessModule processModule = process.MainModule;
                 //FileVersionInfo fileVersionInfo = processModule.FileVersionInfo;
-                string pathFile = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
-                string pathFile2 = Path.GetFullPath(appManageForm.ProgramName);
+                //string pathFile = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
+                //string pathFile2 = Path.GetFullPath(appManageForm.ProgramName);
 
-                if (process.ProcessName == appManageForm.ProgramName)
-                {
+                //if (process.ProcessName == appManageForm.ProgramName)
+                //{
                     process.CloseMainWindow();
                     process.Close();
-                }
-                else if (pathFile == appManageForm.ProgramName)
-                {
-                    process.CloseMainWindow();
-                    process.Close();
-                }
+                //}
 
             }
             // TODO запуск потока Лог
