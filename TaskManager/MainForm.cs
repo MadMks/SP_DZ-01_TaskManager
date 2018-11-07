@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -17,6 +18,8 @@ namespace TaskManager
     public partial class MainForm : Form
     {
         private List<ListViewItem> listViewItems = null;
+
+        private AppManageForm appManageForm = null;
 
         public MainForm()
         {
@@ -74,14 +77,93 @@ namespace TaskManager
 
         private void startProcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppManageForm appManageForm = new AppManageForm(true);
-            appManageForm.ShowDialog();
+            this.ShowTimeSetting(true);
         }
 
         private void endProcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppManageForm appManageForm = new AppManageForm(false);
-            appManageForm.ShowDialog();
+            this.ShowTimeSetting(false);
+        }
+
+        private void ShowTimeSetting(bool isStart)
+        {
+            appManageForm = new AppManageForm(isStart);
+            DialogResult result = appManageForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                TimerCallback timerCallback = null;
+
+                if (isStart)
+                {
+                    // запуск таймера с методом старт
+                    timerCallback = new TimerCallback(this.StartProgram);
+                }
+                else
+                {
+                    // запуск таймера с методом енд
+                    timerCallback = new TimerCallback(this.EndProgram);
+                }
+
+                Timer timer = new Timer(timerCallback);
+
+                timer.Change(0, 0); // TODO mlsec
+            }
+        }
+
+        private void StartProgram(object a)
+        {
+            // TODO запуск процесса.
+            Process process = new Process();
+            process.StartInfo.FileName = appManageForm.ProgramName;
+            process.Start();
+            // TODO запуск потока Лог
+        }
+
+        private void EndProgram(object a)
+        {
+            // TODO завершение процесса.
+            //Process proc = new Process();
+            //proc.StartInfo.FileName = this.textBoxNameOrPathProgram.Text;
+
+
+            //string closeProcessName = "";
+            //Uri uri = new Uri(this.textBoxNameOrPathProgram.Text);
+
+            //if (uri.IsFile)
+            //{
+            //    //closeProcessName = Path.GetFileName(uri.LocalPath);
+            //    closeProcessName = Path.GetFileNameWithoutExtension(uri.LocalPath);
+            //}
+            //else
+            //{
+            //    closeProcessName = this.textBoxNameOrPathProgram.Text;
+            //}
+
+            
+
+            Process[] processes = Process.GetProcesses();
+
+            foreach (Process process in processes)
+            {
+                //ProcessModule processModule = process.MainModule;
+                //FileVersionInfo fileVersionInfo = processModule.FileVersionInfo;
+                string pathFile = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
+                string pathFile2 = Path.GetFullPath(appManageForm.ProgramName);
+
+                if (process.ProcessName == appManageForm.ProgramName)
+                {
+                    process.CloseMainWindow();
+                    process.Close();
+                }
+                else if (pathFile == appManageForm.ProgramName)
+                {
+                    process.CloseMainWindow();
+                    process.Close();
+                }
+
+            }
+            // TODO запуск потока Лог
         }
     }
 }

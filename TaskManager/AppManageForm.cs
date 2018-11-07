@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,7 +16,31 @@ namespace TaskManager
 {
     public partial class AppManageForm : Form
     {
-        private bool isStart;
+        //private bool isStart;
+        
+
+        public string ProgramName
+        {
+            get { return this.textBoxNameOrPathProgram.Text; }
+        }
+        //public string ProcessName
+        //{
+        //    get
+        //    {
+        //        string closeProcessName = "";
+        //        Uri uri = new Uri(this.textBoxNameOrPathProgram.Text);
+
+        //        if (uri.IsFile)
+        //        {
+        //            closeProcessName = Path.GetFileNameWithoutExtension(uri.LocalPath);
+        //        }
+        //        else
+        //        {
+        //            closeProcessName = this.textBoxNameOrPathProgram.Text;
+        //        }
+        //        return closeProcessName;
+        //    }
+        //}
 
         public AppManageForm()
         {
@@ -25,7 +51,7 @@ namespace TaskManager
         {
             InitializeComponent();
 
-            this.isStart = isStart;
+            //this.isStart = isStart;
         }
 
         private void buttonOverview_Click(object sender, EventArgs e)
@@ -41,43 +67,76 @@ namespace TaskManager
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
             // TODO запуск
-            TimerCallback timerCallback = null;
+            //TimerCallback timerCallback = null;
 
-            if (this.isStart)
-            {
-                // запуск таймера с методом старт
-                timerCallback = new TimerCallback(this.StartProgram);
-            }
-            else
-            {
-                // запуск таймера с методом енд
-                timerCallback = new TimerCallback(this.EndProgram);
-            }
+            //if (this.isStart)
+            //{
+            //    // запуск таймера с методом старт
+            //    timerCallback = new TimerCallback(this.StartProgram);
+            //}
+            //else
+            //{
+            //    // запуск таймера с методом енд
+            //    timerCallback = new TimerCallback(this.EndProgram);
+            //}
 
-            Timer timer = new Timer(timerCallback);
+            //Timer timer = new Timer(timerCallback);
+            
+            //timer.Change(0, 0); // TODO mlsec
 
-            timer.Change(0, 0); // TODO mlsec
-
-            MessageBox.Show("запуск таймера");
-            this.Close();
+            //MessageBox.Show("запуск таймера");
+            this.DialogResult = DialogResult.OK;
+            //this.Close();
         }
 
-        private void StartProgram(object pathFile)
-        {
-            // TODO запуск процесса.
-            // TODO запуск потока Лог
-        }
+        //private void StartProgram(object pathFile)
+        //{
+        //    // TODO запуск процесса.
+        //    Process process = new Process();
+        //    process.StartInfo.FileName = this.textBoxNameOrPathProgram.Text;
+        //    process.Start();
+        //    // TODO запуск потока Лог
+        //}
 
-        private void EndProgram(object pathFile)
-        {
-            // TODO завершение процесса.
-            // TODO запуск потока Лог
-        }
+        //private void EndProgram(object pathFile)
+        //{
+        //    // TODO завершение процесса.
+        //    //Process proc = new Process();
+        //    //proc.StartInfo.FileName = this.textBoxNameOrPathProgram.Text;
+            
+
+        //    //string closeProcessName = "";
+        //    //Uri uri = new Uri(this.textBoxNameOrPathProgram.Text);
+
+        //    //if (uri.IsFile)
+        //    //{
+        //    //    //closeProcessName = Path.GetFileName(uri.LocalPath);
+        //    //    closeProcessName = Path.GetFileNameWithoutExtension(uri.LocalPath);
+        //    //}
+        //    //else
+        //    //{
+        //    //    closeProcessName = this.textBoxNameOrPathProgram.Text;
+        //    //}
+
+
+        //    Process[] processes = Process.GetProcesses();
+
+        //    foreach (Process process in processes)
+        //    {
+        //        if (process.ProcessName == closeProcessName)
+        //        {
+        //            process.CloseMainWindow();
+        //            process.Close();
+        //        }
+                
+        //    }
+        //    // TODO запуск потока Лог
+        //}
     }
 }
