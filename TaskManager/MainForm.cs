@@ -122,41 +122,15 @@ namespace TaskManager
 
         private void EndProgram(object a)
         {
-            // TODO завершение процесса.
-            //Process proc = new Process();
-            //proc.StartInfo.FileName = this.textBoxNameOrPathProgram.Text;
-
-
-            //string closeProcessName = "";
-            //Uri uri = new Uri(this.textBoxNameOrPathProgram.Text);
-
-            //if (uri.IsFile)
-            //{
-            //    //closeProcessName = Path.GetFileName(uri.LocalPath);
-            //    closeProcessName = Path.GetFileNameWithoutExtension(uri.LocalPath);
-            //}
-            //else
-            //{
-            //    closeProcessName = this.textBoxNameOrPathProgram.Text;
-            //}
-
-            string processName = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
+            string processName
+                = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
 
             Process[] processes = Process.GetProcessesByName(processName);
 
             foreach (Process process in processes)
             {
-                //ProcessModule processModule = process.MainModule;
-                //FileVersionInfo fileVersionInfo = processModule.FileVersionInfo;
-                //string pathFile = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
-                //string pathFile2 = Path.GetFullPath(appManageForm.ProgramName);
-
-                //if (process.ProcessName == appManageForm.ProgramName)
-                //{
-                    process.CloseMainWindow();
-                    process.Close();
-                //}
-
+                process.CloseMainWindow();
+                process.Close();
             }
             // TODO запуск потока Лог
         }
