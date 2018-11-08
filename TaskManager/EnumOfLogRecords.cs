@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager
 {
-    enum EnumOfLogRecords
+    internal enum EnumOfLogRecords
     {
         Start,
         End,

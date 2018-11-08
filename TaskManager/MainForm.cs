@@ -17,6 +17,10 @@ namespace TaskManager
 {
     public partial class MainForm : Form
     {
+        const string file_Path = "log.txt";
+
+        private EnumOfLogRecords nameLog = EnumOfLogRecords.Error;
+
         private List<ListViewItem> listViewItems = null;
 
         private AppManageForm appManageForm = null;
@@ -117,7 +121,8 @@ namespace TaskManager
             Process process = new Process();
             process.StartInfo.FileName = appManageForm.ProgramName;
             process.Start();
-            // TODO запуск потока Лог
+
+            this.WritingLogsToFile(EnumOfLogRecords.Start, process.StartInfo.FileName);
         }
 
         private void EndProgram(object a)
@@ -131,13 +136,44 @@ namespace TaskManager
             {
                 process.CloseMainWindow();
                 process.Close();
+
+                this.WritingLogsToFile(EnumOfLogRecords.End, appManageForm.ProgramName);
             }
-            // TODO запуск потока Лог
         }
 
-        private void WritingLogsToFile()
+        private void WritingLogsToFile(EnumOfLogRecords log, string name)
         {
+            FileStream fileStream = null;
+            StreamWriter streamWriter = null;
+            try
+            {
+                fileStream = new FileStream(file_Path, FileMode.Append);
 
+                streamWriter = new StreamWriter(fileStream, Encoding.Unicode);
+
+
+                if (log == EnumOfLogRecords.Start)
+                {
+                    streamWriter.WriteLine("Старт программы > " + name);
+                }
+                else if (log == EnumOfLogRecords.End)
+                {
+                    streamWriter.WriteLine("Завершение программы > " + name);
+                }
+                else if (log == EnumOfLogRecords.Error)
+                {
+                    streamWriter.WriteLine("[ error ] " + name);
+                }
+            }
+            catch (Exception ex)
+            {
+                streamWriter.WriteLine("[ error ] " + ex.Message);
+            }
+            finally
+            {
+                streamWriter?.Close();
+                fileStream?.Close();
+            }
         }
     }
 }
