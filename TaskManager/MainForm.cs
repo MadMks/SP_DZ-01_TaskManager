@@ -134,5 +134,10 @@ namespace TaskManager
             }
             // TODO запуск потока Лог
         }
+
+        private void WritingLogsToFile()
+        {
+
+        }
     }
 }

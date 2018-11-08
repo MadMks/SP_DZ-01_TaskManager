@@ -52,6 +52,7 @@
     <Compile Include="AppManageForm.Designer.cs">
       <DependentUpon>AppManageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EnumOfLogRecords.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
