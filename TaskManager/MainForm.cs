@@ -17,20 +17,41 @@ namespace TaskManager
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Класс объединяет параметры для передачи в поток.
+        /// </summary>
         class Logging
         {
+            /// <summary>
+            /// Состояние/значение логирования.
+            /// </summary>
             public EnumOfLogRecords State { get; set; }
+
+            /// <summary>
+            /// Название программы, или причина записи логирования.
+            /// </summary>
             public string Name { get; set; }
         }
 
+        /// <summary>
+        /// Файл логирования.
+        /// </summary>
         const string file_Path = "log.txt";
 
+        /// <summary>
+        /// Список процессов.
+        /// </summary>
         private List<ListViewItem> listViewItems = null;
 
+        /// <summary>
+        /// Форма настройки запуска/завершения программ.
+        /// </summary>
         private AppManageForm appManageForm = null;
 
+        /// <summary>
+        /// Параметризированиый делегат.
+        /// </summary>
         private ParameterizedThreadStart paramThreadStart = null;
-        //private Thread thread = null;
 
         public MainForm()
         {
@@ -43,7 +64,6 @@ namespace TaskManager
         {
             this.paramThreadStart
                 = new ParameterizedThreadStart(WritingLogsToFile);
-            //this.thread = new Thread(paramThreadStart);
 
             this.listViewActiveProcesses.View = View.Details;
 
@@ -111,12 +131,10 @@ namespace TaskManager
 
                 if (isStart)
                 {
-                    // запуск таймера с методом старт
                     timerCallback = new TimerCallback(this.StartProgram);
                 }
                 else
                 {
-                    // запуск таймера с методом енд
                     timerCallback = new TimerCallback(this.EndProgram);
                 }
 
@@ -137,7 +155,6 @@ namespace TaskManager
                 process.Start();
 
                 this.StartLoggingStream(EnumOfLogRecords.Start, process.StartInfo.FileName);
-                //this.WritingLogsToFile(EnumOfLogRecords.Start, process.StartInfo.FileName);
             }
             catch (Exception ex)
             {
@@ -168,7 +185,6 @@ namespace TaskManager
                     process.Close();
 
                     this.StartLoggingStream(EnumOfLogRecords.End, appManageForm.ProgramName);
-                    //this.WritingLogsToFile(EnumOfLogRecords.End, appManageForm.ProgramName);
                 }
             }
             catch (Exception ex)
