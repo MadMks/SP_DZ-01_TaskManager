@@ -17,13 +17,20 @@ namespace TaskManager
 {
     public partial class MainForm : Form
     {
-        const string file_Path = "log.txt";
+        class Logging
+        {
+            public EnumOfLogRecords State { get; set; }
+            public string Name { get; set; }
+        }
 
-        private EnumOfLogRecords nameLog = EnumOfLogRecords.Error;
+        const string file_Path = "log.txt";
 
         private List<ListViewItem> listViewItems = null;
 
         private AppManageForm appManageForm = null;
+
+        private ParameterizedThreadStart paramThreadStart = null;
+        //private Thread thread = null;
 
         public MainForm()
         {
@@ -34,6 +41,10 @@ namespace TaskManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.paramThreadStart
+                = new ParameterizedThreadStart(WritingLogsToFile);
+            //this.thread = new Thread(paramThreadStart);
+
             this.listViewActiveProcesses.View = View.Details;
 
             this.listViewActiveProcesses.Columns.Add("Имя процесса", 140);
@@ -117,32 +128,82 @@ namespace TaskManager
 
         private void StartProgram(object a)
         {
-            // TODO запуск процесса.
-            Process process = new Process();
-            process.StartInfo.FileName = appManageForm.ProgramName;
-            process.Start();
+            Process process = null;
 
-            this.WritingLogsToFile(EnumOfLogRecords.Start, process.StartInfo.FileName);
+            try
+            {
+                process = new Process();
+                process.StartInfo.FileName = appManageForm.ProgramName;
+                process.Start();
+
+                this.StartLoggingStream(EnumOfLogRecords.Start, process.StartInfo.FileName);
+                //this.WritingLogsToFile(EnumOfLogRecords.Start, process.StartInfo.FileName);
+            }
+            catch (Exception ex)
+            {
+                this.StartLoggingStream(EnumOfLogRecords.Error, ex.Message 
+                    + " \""
+                    + process.StartInfo.FileName
+                    + "\"");
+            }
         }
 
         private void EndProgram(object a)
         {
-            string processName
-                = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
-
-            Process[] processes = Process.GetProcessesByName(processName);
-
-            foreach (Process process in processes)
+            try
             {
-                process.CloseMainWindow();
-                process.Close();
+                string processName
+                    = Path.GetFileNameWithoutExtension(appManageForm.ProgramName);
 
-                this.WritingLogsToFile(EnumOfLogRecords.End, appManageForm.ProgramName);
+                Process[] processes = Process.GetProcessesByName(processName);
+
+                if (processes.Count() == 0)
+                {
+                    throw new Exception("Не удается найти указанный файл");
+                }
+
+                foreach (Process process in processes)
+                {
+                    process.CloseMainWindow();
+                    process.Close();
+
+                    this.StartLoggingStream(EnumOfLogRecords.End, appManageForm.ProgramName);
+                    //this.WritingLogsToFile(EnumOfLogRecords.End, appManageForm.ProgramName);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.StartLoggingStream(EnumOfLogRecords.Error, ex.Message
+                    + " \""
+                    + appManageForm.ProgramName
+                    + "\"");
             }
         }
 
-        private void WritingLogsToFile(EnumOfLogRecords log, string name)
+        private void StartLoggingStream(EnumOfLogRecords state, string name)
         {
+            try
+            {
+                Thread thread = new Thread(WritingLogsToFile);
+
+                Logging logging = new Logging
+                {
+                    State = state,
+                    Name = name
+                };
+
+                thread.Start(logging);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void WritingLogsToFile(object log)
+        {
+            Logging logging = log as Logging;
+
             FileStream fileStream = null;
             StreamWriter streamWriter = null;
             try
@@ -152,17 +213,17 @@ namespace TaskManager
                 streamWriter = new StreamWriter(fileStream, Encoding.Unicode);
 
 
-                if (log == EnumOfLogRecords.Start)
+                if (logging.State == EnumOfLogRecords.Start)
                 {
-                    streamWriter.WriteLine("Старт программы > " + name);
+                    streamWriter.WriteLine("Старт программы > " + logging.Name);
                 }
-                else if (log == EnumOfLogRecords.End)
+                else if (logging.State == EnumOfLogRecords.End)
                 {
-                    streamWriter.WriteLine("Завершение программы > " + name);
+                    streamWriter.WriteLine("Завершение программы > " + logging.Name);
                 }
-                else if (log == EnumOfLogRecords.Error)
+                else if (logging.State == EnumOfLogRecords.Error)
                 {
-                    streamWriter.WriteLine("[ error ] " + name);
+                    streamWriter.WriteLine("[ error ] " + logging.Name);
                 }
             }
             catch (Exception ex)
