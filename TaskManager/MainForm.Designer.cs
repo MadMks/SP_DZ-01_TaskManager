@@ -98,7 +98,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "Выход";
             // 
             // controlToolStripMenuItem
@@ -133,9 +133,11 @@
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.listViewActiveProcesses);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Task Manager";
+            this.Text = "Диспетчер задач";
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);

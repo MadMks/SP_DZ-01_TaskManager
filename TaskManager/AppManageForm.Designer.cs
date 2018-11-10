@@ -92,7 +92,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(258, 170);
+            this.buttonSave.Location = new System.Drawing.Point(258, 149);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 6;
@@ -102,7 +102,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(347, 170);
+            this.buttonCancel.Location = new System.Drawing.Point(347, 149);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 7;
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 207);
+            this.ClientSize = new System.Drawing.Size(434, 187);
             this.Controls.Add(this.labelSelectTime);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
@@ -133,6 +133,9 @@
             this.Controls.Add(this.dateTimePickerTime);
             this.Controls.Add(this.dateTimePickerDate);
             this.Controls.Add(this.labelSelectDate);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AppManageForm";
             this.Text = "AppManageForm";
             this.ResumeLayout(false);

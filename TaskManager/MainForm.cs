@@ -74,10 +74,6 @@ namespace TaskManager
             listViewItems = new List<ListViewItem>();
 
             this.ShowActiveProcesses();
-
-            //TimerCallback timerCallback = new TimerCallback(this.ShowActiveProcesses);
-            //Timer timer = new Timer(timerCallback);
-            //timer.Change(0, 3000);
         }
 
         private void ShowActiveProcesses()
