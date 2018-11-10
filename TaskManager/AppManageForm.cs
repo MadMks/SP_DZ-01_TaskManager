@@ -20,6 +20,19 @@ namespace TaskManager
             get { return this.textBoxNameOrPathProgram.Text; }
         }
 
+        public DateTime DateAndTime
+        {
+            get {
+                return new DateTime(
+                  this.dateTimePickerDate.Value.Year,
+                  this.dateTimePickerDate.Value.Month,
+                  this.dateTimePickerDate.Value.Day,
+                  this.dateTimePickerTime.Value.Hour,
+                  this.dateTimePickerTime.Value.Minute,
+                  this.dateTimePickerTime.Value.Second);
+            }
+        }
+
 
         public AppManageForm()
         {
@@ -30,7 +43,14 @@ namespace TaskManager
         {
             InitializeComponent();
 
+            this.Load += AppManageForm_Load;
+
             this.ShowWindowName(isStart);
+        }
+
+        private void AppManageForm_Load(object sender, EventArgs e)
+        {
+            this.dateTimePickerDate.MinDate = DateTime.Now;
         }
 
         private void ShowWindowName(bool isStart)

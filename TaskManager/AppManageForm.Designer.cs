@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.labelSelectDate = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerTime = new System.Windows.Forms.DateTimePicker();
             this.labelNameOrPathProgram = new System.Windows.Forms.Label();
             this.textBoxNameOrPathProgram = new System.Windows.Forms.TextBox();
             this.buttonOverview = new System.Windows.Forms.Button();
@@ -42,32 +42,32 @@
             // labelSelectDate
             // 
             this.labelSelectDate.AutoSize = true;
-            this.labelSelectDate.Location = new System.Drawing.Point(12, 77);
+            this.labelSelectDate.Location = new System.Drawing.Point(14, 77);
             this.labelSelectDate.Name = "labelSelectDate";
             this.labelSelectDate.Size = new System.Drawing.Size(79, 13);
             this.labelSelectDate.TabIndex = 0;
             this.labelSelectDate.Text = "Выбрать дату";
             // 
-            // dateTimePicker1
+            // dateTimePickerDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(15, 98);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 21);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePickerDate.Location = new System.Drawing.Point(15, 98);
+            this.dateTimePickerDate.Name = "dateTimePickerDate";
+            this.dateTimePickerDate.Size = new System.Drawing.Size(200, 21);
+            this.dateTimePickerDate.TabIndex = 1;
             // 
-            // dateTimePicker2
+            // dateTimePickerTime
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker2.Location = new System.Drawing.Point(222, 98);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.ShowUpDown = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 21);
-            this.dateTimePicker2.TabIndex = 2;
+            this.dateTimePickerTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerTime.Location = new System.Drawing.Point(222, 98);
+            this.dateTimePickerTime.Name = "dateTimePickerTime";
+            this.dateTimePickerTime.ShowUpDown = true;
+            this.dateTimePickerTime.Size = new System.Drawing.Size(200, 21);
+            this.dateTimePickerTime.TabIndex = 2;
             // 
             // labelNameOrPathProgram
             // 
             this.labelNameOrPathProgram.AutoSize = true;
-            this.labelNameOrPathProgram.Location = new System.Drawing.Point(12, 18);
+            this.labelNameOrPathProgram.Location = new System.Drawing.Point(15, 18);
             this.labelNameOrPathProgram.Name = "labelNameOrPathProgram";
             this.labelNameOrPathProgram.Size = new System.Drawing.Size(161, 13);
             this.labelNameOrPathProgram.TabIndex = 3;
@@ -113,7 +113,7 @@
             // labelSelectTime
             // 
             this.labelSelectTime.AutoSize = true;
-            this.labelSelectTime.Location = new System.Drawing.Point(210, 77);
+            this.labelSelectTime.Location = new System.Drawing.Point(221, 77);
             this.labelSelectTime.Name = "labelSelectTime";
             this.labelSelectTime.Size = new System.Drawing.Size(84, 13);
             this.labelSelectTime.TabIndex = 8;
@@ -130,8 +130,8 @@
             this.Controls.Add(this.buttonOverview);
             this.Controls.Add(this.textBoxNameOrPathProgram);
             this.Controls.Add(this.labelNameOrPathProgram);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerTime);
+            this.Controls.Add(this.dateTimePickerDate);
             this.Controls.Add(this.labelSelectDate);
             this.Name = "AppManageForm";
             this.Text = "AppManageForm";
@@ -143,8 +143,8 @@
         #endregion
 
         private System.Windows.Forms.Label labelSelectDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerTime;
         private System.Windows.Forms.Label labelNameOrPathProgram;
         private System.Windows.Forms.TextBox textBoxNameOrPathProgram;
         private System.Windows.Forms.Button buttonOverview;

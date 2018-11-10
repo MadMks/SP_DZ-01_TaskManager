@@ -140,7 +140,12 @@ namespace TaskManager
 
                 Timer timer = new Timer(timerCallback);
 
-                timer.Change(0, 0); // TODO mlsec
+                TimeSpan timeSpan = appManageForm.DateAndTime - DateTime.Now;
+
+                if (timeSpan.TotalMilliseconds > 0)
+                {
+                    timer.Change(Convert.ToUInt32(timeSpan.TotalMilliseconds), 0);
+                }
             }
         }
 
