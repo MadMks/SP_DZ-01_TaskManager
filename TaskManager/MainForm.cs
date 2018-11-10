@@ -70,7 +70,11 @@ namespace TaskManager
             this.listViewActiveProcesses.Columns.Add("Имя процесса", 140);
             this.listViewActiveProcesses.Columns.Add("ID", 40);
             this.listViewActiveProcesses.Columns.Add("Память", 100);
-            
+
+            this.listViewActiveProcesses.Columns.Add("Кол-во Handle", 100);
+            this.listViewActiveProcesses.Columns.Add("Кол-во потоков", 100);
+
+
             listViewItems = new List<ListViewItem>();
 
             this.ShowActiveProcesses();
@@ -90,7 +94,10 @@ namespace TaskManager
                         new string[] {
                                 process.ProcessName,
                                 process.Id.ToString(),
-                                process.VirtualMemorySize64.ToString("0,0,0", CultureInfo.InvariantCulture)
+                                process.VirtualMemorySize64.ToString("0,0,0", CultureInfo.InvariantCulture),
+
+                                process.HandleCount.ToString(),
+                                process.Threads.Count.ToString()
                             }
                     )
                 );
